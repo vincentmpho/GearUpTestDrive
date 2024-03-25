@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using VehicleApi.Data;
+using VehicleApi.Repository.Interfaces;
+using VehicleApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,9 @@ builder.Services.AddDbContext<ApiDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+
+//Register Repository 
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 
 var app = builder.Build();
 
